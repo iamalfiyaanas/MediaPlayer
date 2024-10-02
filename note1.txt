@@ -1,0 +1,319 @@
+--------------------------------------------------REACT - advanced front end technology-------------------------------------------------------
+
+Basic Concepts-
+==============
+
+    - react app :
+
+        - collection of JS libraries    (prompt-sync is a library)                                 #diff b/w framework & library
+        - uses collection components, components must arranged in a tree structure
+        - root component it name is by default "App" component
+            - components : part of user interface                                     rendering :displaying contents in browser
+        - used to create single page application
+        - Pure function : used to build react component, which doesn't cause side effects
+        - Declarative Approach 
+        - Virtual DOM : light weight representation of real DOM
+        - Babel library:                                                                             #what is Babel?why it's used?
+
+        - JSX (Javascript XML) - JS Extension for HTML : used to display contents in browser           #createroot
+            - JSX Elements : const heading = <h1>Heading</h1>
+            - Rules for JSX code
+                - Every JSX element must inside a single parent tag
+                - Every JSX tag must have a closing tag (<h1>content</h1> , self closing tag </br> )
+                - Parent tag : can be a container tag / react fragment (<>. .</>)
+                - JSX using camal case : fontSize                                              (joining 2 words+2nd words 1st letter is camal)
+                - Instead of attributes 'class' JSX uses 'className'
+                - Instead of 'for' JSX uses 'htmlFor'
+                - use JS code in JSX, we have place code inside {js-code}
+
+
+React App Creation 
+==================
+    - CRA (using create-react-app command)
+    - Vite : is tool to Build web projects
+        - install vite globally : npm i -g create-vite 
+        - react app using vite : npm create vite@latest reactAppName -- --template react 
+        - to optimize react app using vite : use npm run build
+
+    - File & Folder structure of React app using vite
+        - .gitignore : used to mention files/folder to be ignored while adding to git
+        - package.json : npm configuration file for the project
+        - package-lock,json : contain version history of all packages installed
+        - index.html : entry point of your react app
+        - node_modules : used to hold copies dependent libraries used to create react app
+        - public folder : 
+        - src folder : logic defined folder
+            - asset folder: used to store media file
+            - main.jsx : create reactDOM with parent node as div with id as 'root', and render root component of react app (app component) inside node 
+    - run react app using vite command : npm run dev 
+    - components : part of user interface, are independent and reusable code
+        - create react component : create js/jsx file, file name must start with capital letter
+    - type of components 
+    - class based component / stateful component: rcc-react class component (extension).
+
+    - functional based components / stateless component : create js pure function and return jsx from that function
+
+    - class based component                   functional based components
+    ---------------------------------        ----------------------------------
+    1. uses class extends from react            1. JS pure function which accept props
+    component, its render method must            and return JSX elements
+    return jsx Elements    
+    2. statefull component                      2. stateless component
+    3. it requires render method to return JSX  3. No need to use render method
+    4. Constructor used to initialise state     4. No need to use constructor
+    5. Uses life cycle method in componet       5. life cycle methods are not available
+    6. component will alive depending on        6. it executes from top to bottom,once 
+       different life cycle phases              it return JSX, then it cannot be alive.
+    7. Hooks are not used                       7. Hooks are used to provide react 
+                                                   features
+
+    - Data sharing b/w components
+        - Parent component to child component : use 'props' in child component, props is property of an component, and it type is object, props will always placed as the arguement of child component function.
+
+    - Conditional rendering : used to rendering contents in browser according to a condition, to define condition we can use if statements (&&) , if-else statements (?:)
+
+    - Displaying array using JSX in react app :   use map method (it return another array)
+
+    - React Events Handling : 
+       - Handling function without arguement : event={functionName}
+       - Handling function with arguement : event={()=>functionName(arg)}
+       - Handling function with arguement as that event: event={(event)=>functionName(event)}
+
+    - Applying CSS in React component
+       - Inline CSS : style={{cssProperty:value,}}
+       - External CSS  :  use external css file to define style and to link css file with component use import 'path of css file'      (eg: index.css file)
+       - CSS Modules file : use css module file, file extension as .module.css,
+       define global style in a single file using css selector as className 
+
+    - Styling Frameworks for react 
+        - Material UI : npm install @mui/material @emotion/react @emotion/styled
+        - react bootstrap : npm install react-bootstrap bootstrap, to properly use react bootstrap in react app, we must include bootstrap theme from https://bootswatch.com/, you have to choose a theme, and download its bootstrap.min.css file and add it to src folder of react app, import theme file into main.jsx file
+
+    - React State : used to store values in a component, is an object, whenever state changes component will re-render , to change the state use setState(value)    
+    
+    
+    #super methods for state in jsx
+
+    React component life cycle methods
+       1. Mounting Phase : Putting JSX into DOM
+            - constructor()
+            - getDerivedStateFromProps()
+            - render()
+            - componentDidMount()
+       2. Updating Phase : When Component is Updating
+            - getDerivedStateFromProps()
+            - shouldComponentUpdate()
+            - render()
+            - getSnapshotBeforeUpdate()
+            - componentDidUpdate()
+       3. Unmounting Phase : Removing a component from DOM
+            - componentWillUnmount()
+
+- React Hooks : used to provide functional component to have react component features, hooks are predefined functions in react, inorder to use a hook in function component it has to call the hook
+    - Rule for calling hooks in functional component
+        1. Import hook from react, in component
+        2. Hooks can called at the top level of a component.
+        3. Hooks cannot be conditional
+    - two types hooks
+        - Predefined Hooks
+            - useState Hooks : used to create state in functional component 
+            const[stateName,state Updating function name] = useState(initialValue)
+            - useEffect() : used to provide side effects to the component
+               - syntax : useEffect(callback,dependancy)
+                 - callback : used to provide effects using function
+                 - dependancy : decide when side effectsapplied to component
+                    - no dependancy : side effects will apply to the component whenever a change happens
+                    - [] empty array : side effects will applied only at the time of component Creation
+                    -[state/props/variable] : side effects will applied at the time of component creation and changing of state/props/variable that used in the dependency
+        - Customised Hooks : create a js file with filename starts with 'use' ,
+        inside file define a function with name same as filename
+
+    - Handling Forms in React : how it handling data when it changes also when it submitted
+        - In react form data must handled by react component, to store data it has to use state
+        - While submitting the form, use preventDefault() to avoid unnecessary refreshing of webpage
+        - 2 types of component depending upon how data is managed by component in Forms
+               - controlled component - datas will be stored in component state, 
+               - uncontrolled component -
+
+    - Routing in React : - use router DOM library - used to display multiple components on multiple pages on react application
+                    - npm i react-router-dom
+                    - inorder to setup path to component, the entire react app must render inside 'BrowserRouter' component of react-router-dom library
+                    - render all component needed path must be inside 'Routes' component of react-router-dom library, it must inside app component
+                    -to set up path for component, we have to pass component as property of 'Route' component of react-router-dom library
+                    - Link component : to redirect from one path to another
+
+    - API call in react using Axios library return promise
+        - install axios : npm install axios
+
+    Different ways to to communicate between components
+        - state lifting : uses 'props' share data b/w parent to child, state creates its parent instead of child so that parent can share lifted state to its child
+
+
+
+
+
+
+
+
+
+
+---------------------JSON SERVER - To run JSON file----------------------------------
+
+1.create a folder for SERVER
+2. create package.json file(npm configuration file to your project) :use command - 'npm init -y'
+3.install json-server package (used to run json file) , use command : npm i json-server
+4.create json file(db.json) to store project data
+5. to run json file in localhost : use command 'npx json-server db.json'
+
+[ front end( react application ) run at localhost:5173
+  server run at localhost:3000     ] 
+
+[for giving ytube video link: 
+
+https://www.youtube.com/watch?v=0W6qz0-aDaM
+https://www.youtube.com/embed/0W6qz0-aDaM?si=TJw1-VJH3XBbNSgC
+
+https://www.youtube.com/embed/   - common for all ytube links
+extract 11 bit data which is after 'v='   : eg: '0W6qz0-aDaM'
+]
+
+for uploading video / how to work upload button :
+react toastify - npm i react-toastify
+
+
+4 projects in CV:(proffessional)
+game,chat application,project using api , fullstack project
+
+self portfolio(not proffessional)
+
+
+structure of react application (mediaplayer app)
+==============================
+
+root component => App
+
+childs of App => Header, Landing, Home, History, Footer   
+cilds of Home => Add, View, Category
+child of View => VideoCard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===============================================================================================================================
+
+IMPORTANT (Viva Qn)
+=========
+#what is actually react application ? 
+which is the front end development technology .front end means which is used to design user interface.if u want to create a user interface we need components in react.and these components are collection of tree .they are arranged in a collection of tree structure.every tree structure has a single root.that root has actually rendered to a browser DOM.for that we used the methode 'createRoot'
+
+#by default, root component name is 'app'
+
+#how we can share data from one js file to another js file?
+ans: using import statement.
+
+#how to display react application in browser?
+ans: using createRoot
+
+
+#note:
+======
+
+communicate b/w 2 files / get data from 1 file to another
+we must have 2 keywords : export & import
+export is in 2 ways: export default :exported only one content by default from one file.so that, curly braces are not used while importing that.
+
+
+main.jsx : used for which component is rendering at the root of react DOM. app is the component in this.
+
+react using Virtual DOM 
+
+advantage of virtual DOM
+if any changes in page, entire content of that page won't get reloaded.only verbal changes happend that part only what refresh.
+
+
+app.jsx
+=======
+
+in function code:=
+
+above rturn code -> write JS code
+after return code -> write JSX code
+
+what is the reason for react is not using more div's?
+
+
+inside of {} -> use JScode only
+
+app.jsx => inside of return -> delete all
+app.css & index.css => delete all & write css code in index.css
+
+purpose of main.jsx : render react component in reactDOM
+
+root component of application : app.jsx
+
+
+a react componet is how to part of a react application
+
+creating component using function
+
+how to load str of react functional component using extention
+
+ans: rfce  or rafce           (rafce--arrow is using)
+
+how to create component?
+  - create a jsx file which is start first letter is capital
+  - inside of that, create a javascript pure function & it returns jsx
+  - it maded a component using function in react.
+
+how to use a component in a component? how to it part of react application ?
+in root component, import the child componentin accordance to js.
+in jsx part of component, using self closing tag in child component , then we can see child component in raect application.
+
+
+how to share parent data to child?
+
+props
+
+destructuring an object
+
+regular expressions (creation & rules)
+
+higher order components?  interview qns 
+ans: a component coming in the prox of a component 
+
+logic of code explaining? interview qns
+
+windows key + . key in keyboard => imoji box opened
+
+netlify deploy  == npm run build in terminal for reduce file Size
+it create a dist folder in vscode
+
+===============================================================================================================================
+
+<div style={{paddingTop:'100px'}} >
+      {/* landing part */}
+      <div className="row align-items-center">
+        <div className="col-lg-5">
+          <h3>Welcome to <span className='text-warning'>Media Player</span></h3>
+          <p style={{textAlign:'justify'}} className='mt-3'>Media player App will allow user to add or remove their uploaded videos from youtube and also allow them to arrange it in different categories by drag and drop. User can also have the provision to manage their watch history as well. What are you waiting for, et starts exploring our site!!!</p>
+          <Link to={'/home'} className='btn btn-info'>Get Started</Link>
+        </div>
+        <div className="col">
+          
+        </div>
+      </div>
+      {/* features */}
+      {/* links */}
+    </div>
